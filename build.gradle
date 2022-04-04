@@ -12,6 +12,7 @@ repositories {
 dependencies {
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    testImplementation 'io.rest-assured:rest-assured:4.4.0'
 }
 
 test {

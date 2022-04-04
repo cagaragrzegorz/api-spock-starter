@@ -1,15 +1,30 @@
 package com.starter.api
 
+import io.restassured.RestAssured
+import io.restassured.response.Response
+import spock.lang.Shared
 import spock.lang.Specification
 
 class SampleApiTest extends Specification {
 
-    def 'first test'() {
-        when:
-        def a = 2
-        def b = 2
+    @Shared
+    def headers = ['Accept'         : '*/*',
+                   'Accept-Language': 'pl-PL']
 
-        then:
-        a + b == 4
+    def setupSpec() {
+        RestAssured.baseURI = 'https://postman-echo.com'
+    }
+
+    def 'get status code form postman API endpoint'() {
+        given: 'set facts for test'
+        def requestStatus = 200
+
+        when: 'api call is made for given query'
+        Response response = RestAssured.given()
+                .headers(headers)
+                .get('/status/200')
+
+        then: 'actual output matches expected output'
+        response.getStatusCode() == requestStatus
     }
 }
