@@ -1,22 +1,13 @@
 package com.starter.api
 
+import com.starter.common.ApiTestBase
 import io.restassured.RestAssured
 import io.restassured.response.Response
 import org.json.JSONObject
 import org.skyscreamer.jsonassert.JSONAssert
-import spock.lang.Shared
-import spock.lang.Specification
 import spock.lang.Unroll
 
-class SampleApiTest extends Specification {
-
-    @Shared
-    def headers = ['Accept'         : '*/*',
-                   'Accept-Language': 'pl-PL']
-
-    def setupSpec() {
-        RestAssured.baseURI = 'https://postman-echo.com'
-    }
+class SampleApiTest extends ApiTestBase {
 
     def 'get status code form postman API endpoint'() {
         given: 'set facts for test'
