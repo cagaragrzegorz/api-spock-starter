@@ -4,6 +4,7 @@ import io.restassured.RestAssured
 import io.restassured.response.Response
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class SampleApiTest extends Specification {
 
@@ -26,5 +27,24 @@ class SampleApiTest extends Specification {
 
         then: 'actual output matches expected output'
         response.getStatusCode() == requestStatus
+    }
+
+    @Unroll
+    def 'get parameters form postman API endpoint'() {
+        given: 'set facts for test'
+        def requestStatus = 200
+
+        when: 'api call is made for given query'
+        Response response = RestAssured.given()
+                .headers(headers)
+                .get("/get/$arguments)")
+
+        then: 'actual output matches expected output'
+        response.getStatusCode() == requestStatus
+
+        where:
+        arguments             | expectedResponse
+        'grze=gorz'           | '{"grze":"gorz"}'
+        'foo1=barq&foo2=bar2' | '{"foo1":"bar1", "foo2":"bar2"}'
     }
 }
