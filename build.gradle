@@ -2,7 +2,7 @@ plugins {
     id 'groovy'
 }
 
-group 'org.example'
+group 'com.starter'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,4 +10,10 @@ repositories {
 }
 
 dependencies {
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+}
+
+test {
+    useJUnitPlatform()
 }
