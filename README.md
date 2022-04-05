@@ -24,7 +24,7 @@ Linux / MacOS
 Windows
 
 ```shell
-./gradlew clean build test
+gradlew.bat clean build test
 ```
 
 Or run tests directly in IDE.
